@@ -1,0 +1,157 @@
+<html>
+  <head>
+    <title>Looking for objects</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.min.css">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>  -->
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!-- Include library [mmturkey][mmturkey], which manages submitting data to Mechanical Turk. This defines a global object, <code>turk</code>, and attaches five properties to it, <code>hitId</code>, <code>assignmentId</code>, <code>workerId</code>, <code>previewMode</code>, and <code>turkSubmitTo</code>. It also provides a single method, <code>submit(data)</code>, which you use to submit data to Turk. If no submission URL has been provided (because, e.g. you're testing your code outside of the Turk environment), <code>submit</code> displays what would have been submitted (without, obviously, any Turk-specific variables like <code>workerId</code> and <code>assignmentId</code>).  -->
+    <!-- [mmturkey]: http://github.com/longouyang/mmturkey -->
+    <script src="mmturkey-0.6.js"></script>
+    <link rel="stylesheet" href="stylecentered.css" />
+    <meta name="viewport" content="initial-scale=1.0" /> 
+     <!--<meta name="viewport" content="width=device-width">  -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <style>
+    #custom-handle {
+      width: 3em;
+      height: 1.6em;
+      top: 50%;
+      margin-top: -.8em;
+      text-align: center;
+      line-height: 1.6em;
+    }
+   </style>
+
+   <script>
+    $( function() {
+      var handle = $( "#custom-handle" );
+      $( "#slider" ).slider({
+        create: function() {
+          handle.text( $( this ).slider( "value" ) );
+        },
+        slide: function( event, ui ) {
+          handle.text( ui.value );
+        }
+      });
+    } );
+  </script>
+
+
+  </head>
+  <body>
+  
+ 
+  <div class="slide" id="trainingstage">
+      <div id="instructions"> </div>
+      <center>
+      <div class="row">
+        <div class="col-xs-4">
+          <img id="object1" class="img-responsive" style="padding:30">
+        </div>
+        <div class="col-xs-4">
+          <img id="object2" class="img-responsive" style="padding:30">
+        </div>
+        <div class="col-xs-4">
+          <img id="object3" class="img-responsive" style="padding:30">
+        </div>
+      </div>
+    </center>
+
+      <center><button type="button" id="tosearchbutton">Next</button></center>
+  </div>
+
+  <div class="slide" id="searchstage">
+
+      <center><div id="sinstructions"> </div></center>
+      
+      <center>
+      <div class="row">
+        <div class="col-xs-4">
+          <img id="sobject1" class="img-responsive" style="padding:30">
+        </div>
+        <div class="col-xs-4">
+          <img id="sobject2" class="img-responsive" style="padding:30">
+        </div>
+        <div class="col-xs-4">
+          <img id="sobject3" class="img-responsive" style="padding:30">
+        </div>
+      </div>
+    </center>
+      <div id="sselector" class = "border"></div>
+      <center><button type="button" id="totestbutton">Next</button></center>
+  </div>
+
+
+  <div class="slide" id="testingstage">
+      <center><div id="tinstructions"> </div></center>
+      <div id="labelInst"> </div>
+      <div id="slider">
+        <div id="custom-handle" class="ui-slider-handle"></div>
+      </div>
+      <div id="sliderlabel"> </div>
+      <center><button type="button" id="nexttrialbutton">Next</button></center>
+  </div>
+
+  <div class="slide" id="attnCheck">
+      <p style="margin-left:17%"> Which of the following objects were you just asked about?</p>
+      
+      <div style="margin-left:20%" id="attnCheckResponses"></div>
+      
+      <center><button type="button" id="attnCheckButton">Submit</button></center>
+  </div>
+
+
+  <div class="slide" id="prestudy">
+        <br><br><br><br>
+        <p class="block-text">By answering the following questions, you are participating in a study being performed by cognitive scientists in the University of Chicago Department of Psychology. If you have questions about this research, please contact us at <a href="mailto:callab.uchicago@gmail.com">callab.uchicago@gmail.com</a>. You must be  at least 18 years old to participate. Your participation in this research is voluntary. You may decline to answer any or all of the following questions. You may decline further participation, at any time, without adverse consequences. Your anonymity is assured; the researchers who have requested your participation will not receive any personal information about you. Note however that we have recently been made aware that your public Amazon.com profile can be accessed via your worker ID if you do not choose to opt out. If you would like to opt out of this feature, you may follow instructions available <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=16465241">here</a>.</p> 
+
+        <p class="block-text"> In this task, you will learn about and search for new fruits. You will then make judgments about what these fruits are usually like. </p> 
+        <p class="block-text"> When you are ready, click the button below to begin.</p>
+        <center><button type="button" onClick="this.blur(); experiment.preStudy()">Begin</button></center>
+
+      
+  </div>
+
+
+
+
+  <div class="slide" id="finished">
+  </div>
+
+    
+  <script src="tabletcentered.js"></script>
+    
+<script type="text/javascript">
+    (function(){
+        var ut_id = "47f306b97ca716e1623ef982c4137e8d";
+        if (UTWorkerLimitReached(ut_id)) {
+            // console.log("chcecking for repeat turkers, exculding our debugging process")
+            // console.log(turk.workerId)
+            // if(turk.workerId != "A2MG0KC0KL6UWS") {
+        // if (1>0) {
+                // the below line is from the original code taken from the uniqueturker website
+                    // however, it breaks the function becasue we are using an external hit. 
+                // document.getElementById('mturk_form').style.display = 'none';
+                document.getElementsByTagName('body')[0].innerHTML = "Unfortunately, you have already completed a similar HIT for this requester in the past and repeated attempts are not allowed. Please click 'Return HIT' to avoid any impact on your approval rating.";
+                $('body').addClass("col-xs-8 col-xs-offset-2 redText")
+                $('body').css('margin-top', "100px")
+                $('body').css('font-weight', "bold")
+                $('body').css('font-size', "20px")
+                slide_number="repeated"
+            // }
+        }
+    })();
+    </script>
+    
+  </body>
+</html>
